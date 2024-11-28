@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Modificar</title>
+
+ <script type="module" src="js/configura.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+ <script type="module" src="js/bd/productoBusca.js"></script>
+ <script type="module" src="js/bd/productoElimina.js"></script>
+ <script type="module" src="js/bd/productoModifica.js"></script>
+
+ <script>
+
+  // Obtiene los parámetros de la página.
+  const parametros = new URL(location.href).searchParams
+
+  const paramId = parametros.get("id")
+
+ </script>
+
+</head>
+
+<body onload="if (paramId !== null) {
+   productoBusca(paramId)
+    .then(producto => {
+     if (producto === undefined) throw new Error('Producto no encontrado.')
+     muestraObjeto(forma, { nombre: { value: producto.PROD_NOMBRE } })
+    })
+    .catch(muestraError)
+  }">
+
+ <form id="forma" onsubmit="
+   event.preventDefault()
+   if (paramId !== null) {
+    const PROD_ID = paramId
+    // Lee el nombre, quitándole los espacios al inicio y al final.
+    const PROD_NOMBRE = forma.nombre.value.trim()
+    const PROD_DESCRIPCION = forma.descripcion.value.trim()
+    const modelo = { PROD_ID, PROD_NOMBRE, PROD_DESCRIPCION }
+    productoModifica(modelo)
+     .then(json => location.href = 'index.html')
+     .catch(muestraError)
+   }">
+
+  <h1>Modificar</h1>
+
+  <p><a href="index.html">Cancelar</a></p>
+
+  <p>
+   <label>
+    Nombre *
+    <input name="nombre" value="Cargando&hellip;">
+   </label>
+  </p>
+
+  <p>* Obligatorio</p>
+
+  <p>
+    <label>
+     Descripción *
+     <input name="descripcion" value="Cargando&hellip;">
+    </label>
+   </p>
+ 
+   <p>* Obligatorio</p>
+
+  <p>
+
+   <button type="submit">Guardar</button>
+
+   <button type="button" onclick="
+      if (paramId !== null && confirm('Confirma la eliminación')) {
+        productoElimina(paramId)
+        .then(() => location.href = 'index.html')
+        .catch(muestraError)
+      }">
+    Eliminar
+   </button>
+
+  </p>
+
+ </form>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+
+ <title>Sincronizacion</title>
+
+ <meta name="viewport" content="width=device-width">
+
+ <script src="js/registraServiceWorker.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <script type="module" src="js/bd/productoConsultaNoEliminados.js"></script>
+ <script type="module" src="js/renderiza.js"></script>
+ <script type="module" src="js/sincroniza.js"></script>
+ <script type="module" src="js/esperaUnPocoYSincroniza.js"></script>
+
+</head>
+
+<body onload="productoConsultaNoEliminados()
+   .then(productos => {
+    renderiza(lista, productos)
+    sincroniza(lista)
+   })
+   .catch(error => {
+    muestraError(error)
+    esperaUnPocoYSincroniza(lista)
+   })">
+
+ <h1>Sincronizacion</h1>
+
+ <p><a href="agrega.html">Agregar</a></p>
+
+ <ul id="lista">
+  <li><progress max="100">Cargando&hellip;</progress></li>
+ </ul>
+
+</body>
+
+</html>

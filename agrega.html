@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Agregar</title>
+
+ <script type="module" src="js/configura.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <script type="module" src="js/bd/productoAgrega.js"></script>
+
+</head>
+
+<body>
+
+ <form id="forma" onsubmit="
+   event.preventDefault()
+   // Lee el nombre, quitándole los espacios al inicio y al final.
+   const PROD_NOMBRE = forma.nombre.value.trim()
+   const PROD_DESCRIPCION = forma.descripcion.value.trim()
+   const modelo = { PROD_NOMBRE, PROD_DESCRIPCION }
+   productoAgrega(modelo)
+    .then(json => location.href = 'index.html')
+    .catch(muestraError)">
+
+  <h1>Agregar</h1>
+
+  <p><a href="index.html">Cancelar</a></p>
+
+  <p>
+   <label>
+    Nombre *
+    <input name="nombre">
+   </label>
+  </p>
+  <p>* Obligatorio</p>
+  <p>
+    <label>
+     Descripción *
+     <input name="descripcion">
+    </label>
+   </p>
+   <p>* Obligatorio</p>
+  <p><button type="submit">Agregar</button></p>
+
+ </form>
+
+</body>
+
+</html>
