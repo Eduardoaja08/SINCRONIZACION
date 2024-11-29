@@ -30,7 +30,7 @@ export async function productoConsultaNoEliminados() {
     const cursor = consulta.result
     if (cursor === null) {
      /* Si el cursor vale null, ya no hay más objetos que procesar; por lo
-      * mismo, se devuelve el resultado con los pasatiempos recuperados, usando
+      * mismo, se devuelve el resultado con los productos recuperados, usando
       *  resolve(resultado). */
      resolve(resultado)
     } else {

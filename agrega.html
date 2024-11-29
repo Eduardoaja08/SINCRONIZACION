@@ -6,11 +6,22 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width">
 
- <title>Agregar</title>
+ <title>Agregar producto - Market</title>
 
  <script type="module" src="js/configura.js"></script>
  <script type="module" src="lib/js/muestraError.js"></script>
  <script type="module" src="js/bd/productoAgrega.js"></script>
+ <script src="js/registraServiceWorker.js"></script>
+
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="32x32" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <link rel="stylesheet" href="css/estilos.css">
+ <script src="ungap/custom-elements.js"></script>
+ <script type="module" src="lib/js/consumeJson.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
 
 </head>
 
@@ -19,32 +30,60 @@
  <form id="forma" onsubmit="
    event.preventDefault()
    // Lee el nombre, quitándole los espacios al inicio y al final.
-   const PROD_NOMBRE = forma.nombre.value.trim()
-   const PROD_DESCRIPCION = forma.descripcion.value.trim()
-   const modelo = { PROD_NOMBRE, PROD_DESCRIPCION }
+    const PROD_NOMBRE = forma.nombre.value.trim()
+    const PROD_DESCRIPCION = forma.descripcion.value.trim()
+    const PROD_PRECIO = forma.nombre.precio.trim()
+    const modelo = { PROD_NOMBRE, PROD_DESCRIPCION, PROD_PRECIO }
    productoAgrega(modelo)
     .then(json => location.href = 'index.html')
     .catch(muestraError)">
 
-  <h1>Agregar</h1>
 
-  <p><a href="index.html">Cancelar</a></p>
+    <p>
+      <a class="md-standard-icon-button" rel="noreferrer" href="index.html">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+  
+      <button type="submit" class="md-standard-icon-button"
+      style="position: fixed; top: 1rem; right: 1rem;">
+      <span class="material-symbols-outlined">save</span>
+    </button>
+  
+     </p>
+  
 
-  <p>
-   <label>
-    Nombre *
-    <input name="nombre">
-   </label>
-  </p>
-  <p>* Obligatorio</p>
-  <p>
-    <label>
-     Descripción *
-     <input name="descripcion">
-    </label>
-   </p>
-   <p>* Obligatorio</p>
-  <p><button type="submit">Agregar</button></p>
+    <md-top-app-bar>
+      <h1>Agregar producto</h1>
+    </md-top-app-bar>
+  <nav-tab-fixed id="tab"></nav-tab-fixed>
+  
+    <p>
+      <label class="md-filled-text-field">
+       <input required placeholder="Nombre*" name="nombre">
+       <span>Nombre *</span>
+       <small>Obligatorio</small>
+      </label>
+     </p>
+  
+  
+     <p>
+      <label class="md-filled-text-field">
+       <input required placeholder="Precio*" name="precio">
+       <span>Precio *</span>
+       <small>Obligatorio</small>
+      </label>
+     </p>
+  
+     <p>
+      <label class="md-filled-text-field">
+       <input required placeholder="Descripción*" name="descripcion">
+       <span>Descripción *</span>
+       <small>Obligatorio</small>
+      </label>
+     </p>
+  
+
+    
 
  </form>
 

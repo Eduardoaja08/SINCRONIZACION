@@ -6,7 +6,7 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width">
 
- <title>Modificar</title>
+ <title>Modificar producto - Market</title>
 
  <script type="module" src="js/configura.js"></script>
  <script type="module" src="lib/js/muestraError.js"></script>
@@ -14,6 +14,15 @@
  <script type="module" src="js/bd/productoBusca.js"></script>
  <script type="module" src="js/bd/productoElimina.js"></script>
  <script type="module" src="js/bd/productoModifica.js"></script>
+
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="32x32" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <link rel="stylesheet" href="css/estilos.css">
+ <script src="ungap/custom-elements.js"></script>
+ <script type="module" src="lib/js/consumeJson.js"></script>
+
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
 
  <script>
 
@@ -27,13 +36,14 @@
 </head>
 
 <body onload="if (paramId !== null) {
-   productoBusca(paramId)
-    .then(producto => {
-     if (producto === undefined) throw new Error('Producto no encontrado.')
-     muestraObjeto(forma, { nombre: { value: producto.PROD_NOMBRE } })
-    })
-    .catch(muestraError)
-  }">
+  productoBusca(paramId)
+   .then(producto => {
+    if (producto === undefined) throw new Error('Producto no encontrado.')
+    muestraObjeto(forma, { nombre: { value: producto.PROD_NOMBRE }, descripcion: { value: producto.PROD_DESCRIPCION}, precio: { value: producto.PROD_PRECIO } })
+   })
+   .catch(muestraError)
+ }">
+
 
  <form id="forma" onsubmit="
    event.preventDefault()
@@ -42,48 +52,70 @@
     // Lee el nombre, quitándole los espacios al inicio y al final.
     const PROD_NOMBRE = forma.nombre.value.trim()
     const PROD_DESCRIPCION = forma.descripcion.value.trim()
-    const modelo = { PROD_ID, PROD_NOMBRE, PROD_DESCRIPCION }
+    const PROD_PRECIO = forma.nombre.precio.trim()
+    const modelo = { PROD_ID, PROD_NOMBRE, PROD_DESCRIPCION, PROD_PRECIO }
     productoModifica(modelo)
      .then(json => location.href = 'index.html')
      .catch(muestraError)
    }">
 
-  <h1>Modificar</h1>
+   <p>
+    <a class="md-standard-icon-button" rel="noreferrer" href="index.html">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
 
-  <p><a href="index.html">Cancelar</a></p>
+    <button type="submit" class="md-standard-icon-button"
+    style="position: fixed; top: 1rem; right: 3rem;">
+    <span class="material-symbols-outlined">save</span>
+  </button>
 
-  <p>
-   <label>
-    Nombre *
-    <input name="nombre" value="Cargando&hellip;">
-   </label>
-  </p>
+  <button type="button"  class="md-standard-icon-button"
+  style="position: fixed; top: 1rem; right: 1rem;" onclick="
+     if (paramId !== null && confirm('Confirma la eliminación')) {
+      productoElimina(paramId)
+       .then(() => location.href = 'index.html')
+       .catch(muestraError)
+     }">
+   <span class="material-symbols-outlined">delete</span>
+ </button>
 
-  <p>* Obligatorio</p>
 
-  <p>
-    <label>
-     Descripción *
-     <input name="descripcion" value="Cargando&hellip;">
-    </label>
    </p>
- 
-   <p>* Obligatorio</p>
 
-  <p>
 
-   <button type="submit">Guardar</button>
+   <md-top-app-bar>
+    <h1>Modificar producto</h1>
+  </md-top-app-bar>
+<nav-tab-fixed id="tab"></nav-tab-fixed>
 
-   <button type="button" onclick="
-      if (paramId !== null && confirm('Confirma la eliminación')) {
-        productoElimina(paramId)
-        .then(() => location.href = 'index.html')
-        .catch(muestraError)
-      }">
-    Eliminar
-   </button>
+<input name="id" type="hidden">
 
-  </p>
+
+<p>
+  <label class="md-filled-text-field">
+   <input required placeholder="Nombre*" name="nombre" value="Cargando&hellip;">
+   <span>Nombre *</span>
+   <small>Obligatorio</small>
+  </label>
+ </p>
+
+
+ <p>
+  <label class="md-filled-text-field">
+   <input required placeholder="Nombre*" name="precio" value="Cargando&hellip;">
+   <span>Precio *</span>
+   <small>Obligatorio</small>
+  </label>
+ </p>
+
+ <p>
+  <label class="md-filled-text-field">
+   <input required placeholder="Nombre*" name="descripcion" value="Cargando&hellip;">
+   <span>Descripción *</span>
+   <small>Obligatorio</small>
+  </label>
+ </p>
+
 
  </form>
 

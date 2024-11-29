@@ -7,7 +7,7 @@ require_once __DIR__ . "/../lib/php/ProblemDetails.php";
 require_once __DIR__ . "/../lib/php/devuelveProblemDetails.php";
 require_once __DIR__ . "/../lib/php/devuelveErrorInterno.php";
 require_once __DIR__ . "/modelo/TABLA_PRODUCTO.php";
-require_once __DIR__ . "/modelo/validaproducto.php";
+require_once __DIR__ . "/modelo/validaProducto.php";
 require_once __DIR__ . "/bd/productoAgrega.php";
 require_once __DIR__ . "/bd/productoBusca.php";
 require_once __DIR__ . "/bd/productoConsultaNoEliminados.php";

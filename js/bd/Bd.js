@@ -1,7 +1,7 @@
 export const ALMACEN_PRODUCTO = "PRODUCTO"
 export const PROD_ID = "PROD_ID"
 export const INDICE_NOMBRE = "INDICE_NOMBRE"
-export const PROD_NOMBRE = "PROD_NOMBRE"
+export const PROD_PRECIO = "PROD_PRECIO"
 export const PROD_DESCRIPCION = "PROD_DESCRIPCION"
 const BD_NOMBRE = "sincronizacion"
 const BD_VERSION = 1
@@ -29,11 +29,11 @@ export const Bd = new Promise((resolve, reject) => {
    bd.deleteObjectStore(ALMACEN_PRODUCTO)
   }
 
-  // Crea el almacén "PASATIEMPO" con el campo llave "PAS_ID".
+  // Crea el almacén "PRODUCTO" con el campo llave "PROD_ID".
   const almacenProducto =
    bd.createObjectStore(ALMACEN_PRODUCTO, { keyPath: PROD_ID })
 
-  // Crea un índice ordenado por el campo "PAS_NOMBRE" que no acepta duplicados.
+  // Crea un índice ordenado por el campo "PROD_NOMBRE" que no acepta duplicados.
   almacenProducto.createIndex(INDICE_NOMBRE, "PROD_NOMBRE")
  }
 

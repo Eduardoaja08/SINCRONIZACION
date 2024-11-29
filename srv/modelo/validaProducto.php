@@ -25,10 +25,17 @@ function validaProducto($objeto)
   );
 
   if (!isset($objeto->PROD_DESCRIPCION) || !is_string($objeto->PROD_DESCRIPCION))
-   throw new ProblemDetails(
-    status: BAD_REQUEST,
-    title: "La descripción debe ser texto.",
-    type: "/error/nombreincorrecto.html",
+  throw new ProblemDetails(
+   status: BAD_REQUEST,
+   title: "La descripción debe ser texto.",
+   type: "/error/descripcionincorrecto.html",
+  );
+
+  if (!isset($objeto->PROD_PRECIO) || !is_string($objeto->PROD_PRECIO))
+  throw new ProblemDetails(
+   status: BAD_REQUEST,
+   title: "El precio debe ser texto.",
+   type: "/error/precioincorrecto.html",
   );
 
  if (!isset($objeto->PROD_MODIFICACION)  || !is_int($objeto->PROD_MODIFICACION))
@@ -49,6 +56,8 @@ function validaProducto($objeto)
   PROD_ID => $objeto->PROD_ID,
   PROD_NOMBRE => $objeto->PROD_NOMBRE,
   PROD_MODIFICACION => $objeto->PROD_MODIFICACION,
+  PROD_PRECIO => $objeto->PROD_PRECIO,
+  PROD_DESCRIPCION => $objeto->PROD_DESCRIPCION,
   PROD_ELIMINADO => $objeto->PROD_ELIMINADO
  ];
 }

@@ -9,6 +9,7 @@ require_once __DIR__ . "/../modelo/TABLA_PRODUCTO.php";
  *   PROD_ID: string,
  *   PROD_NOMBRE: string,
  *   PROD_DESCRIPCION: string,
+ *   PROD_PRECIO: string,
  *   PROD_MODIFICACION: int,
  *   PROD_ELIMINADO: int
  *  }[]

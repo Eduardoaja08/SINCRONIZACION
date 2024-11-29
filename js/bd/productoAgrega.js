@@ -2,6 +2,8 @@ import { bdEjecuta } from "../../lib/js/bdEjecuta.js"
 import { creaIdCliente } from "../../lib/js/creaIdCliente.js"
 import { ALMACEN_PRODUCTO, Bd } from "./Bd.js"
 import { validaNombre } from "../modelo/validaNombre.js"
+import { validaDescripcion } from "../modelo/validaDescripcion.js"
+import { validaPrecio } from "../modelo/validaPrecio.js"
 import { exportaAHtml } from "../../lib/js/exportaAHtml.js"
 
 /**
@@ -9,6 +11,8 @@ import { exportaAHtml } from "../../lib/js/exportaAHtml.js"
  */
 export async function productoAgrega(modelo) {
  validaNombre(modelo.PROD_NOMBRE)
+ validaDescripcion(modelo.PROD_DESCRIPCION)
+ validaPrecio(modelo.PROD_PRECIO)
  modelo.PROD_MODIFICACION = Date.now()
  modelo.PROD_ELIMINADO = 0
  // Genera id único en internet.

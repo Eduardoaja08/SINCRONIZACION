@@ -5,9 +5,9 @@
 
  <meta charset="UTF-8">
 
- <title>Sincronizacion</title>
+ <title>Lista de productos - Market</title>
 
- <meta name="viewport" content="width=device-width">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <script src="js/registraServiceWorker.js"></script>
  <script type="module" src="lib/js/muestraError.js"></script>
@@ -16,7 +16,21 @@
  <script type="module" src="js/sincroniza.js"></script>
  <script type="module" src="js/esperaUnPocoYSincroniza.js"></script>
 
+
+ <meta name="theme-color" content="#fffbfe">
+ <link rel="icon" sizes="32x32" href="favicon.ico">
+ <link rel="manifest" href="site.webmanifest">
+ <link rel="stylesheet" href="css/estilos.css">
+ <script src="ungap/custom-elements.js"></script>
+ <script type="module" src="js/configura.js"></script>
+ <script type="module" src="lib/js/consumeJson.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+
+ <link rel="stylesheet" href="css/transicion_pestanas.css">
+ <!-- <link rel="expect" blocking="render" href="#navtabfixed"> -->
 </head>
+
+
 
 <body onload="productoConsultaNoEliminados()
    .then(productos => {
@@ -28,13 +42,24 @@
     esperaUnPocoYSincroniza(lista)
    })">
 
- <h1>Sincronizacion</h1>
+   <md-top-app-bar>
+    <h1>Lista de productos</h1>
+  </md-top-app-bar>
+<nav-tab-fixed id="tab"></nav-tab-fixed>
+  <main>
 
- <p><a href="agrega.html">Agregar</a></p>
+ <ul class="md-list" id="lista">
+  <li class="md-two-line">
+      <span class="headline">Cargando&hellip;</span>
+      <span class="supporting"><progress max="100">Cargando&hellip;</progress></span>
+  </li>
+</ul>
 
- <ul id="lista">
-  <li><progress max="100">Cargando&hellip;</progress></li>
- </ul>
+ <a href="agrega.html"><button type="button" class="md-fab-primary"
+  style="position: fixed; bottom: 1rem; right: 1rem;">
+ <span class="material-symbols-outlined">add</span>
+</button></a>
+    
 
 </body>
 

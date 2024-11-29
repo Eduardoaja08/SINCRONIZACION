@@ -15,7 +15,7 @@ export async function productoBusca(id) {
    */
   (transaccion, resolve) => {
 
-   /* Pide el primer obljeto de ALMACEN_PRODUCTO que tenga como llave
+   /* Pide el primer objeto de ALMACEN_PRODUCTO que tenga como llave
     * primaria el valor del parámetro id. */
    const consulta = transaccion.objectStore(ALMACEN_PRODUCTO).get(id)
 

@@ -15,7 +15,7 @@
  * conoce como número menor y se cambia cuando se realizan
  * modificaciones menores.
  */
-const VERSION = "1.00"
+const VERSION = "2.00"
 
 /**
  * Nombre de la carpeta de caché.
@@ -29,6 +29,15 @@ const ARCHIVOS = [
  "agrega.html",
 "index.html",
 "modifica.html",
+"css/estilos.css",
+"img/maskable_icon.png",
+"img/maskable_icon_x48.png",
+"img/maskable_icon_x72.png",
+"img/maskable_icon_x96.png",
+"img/maskable_icon_x144.png",
+"img/maskable_icon_x192.png",
+"img/screenshot_horizontal.png",
+"img/screenshot_vertical.png",
 "error/datosnojson.html",
 "error/eliminadoincorrecto.html",
 "error/errorinterno.html",
@@ -44,18 +53,18 @@ const ARCHIVOS = [
 "js/renderiza.js",
 "js/sincroniza.js",
 "js/bd/Bd.js",
-"js/bd/pasatiempoAgrega.js",
-"js/bd/pasatiempoBusca.js",
-"js/bd/pasatiempoConsultaNoEliminados.js",
-"js/bd/pasatiempoConsultaTodos.js",
-"js/bd/pasatiempoElimina.js",
-"js/bd/pasatiempoModifica.js",
-"js/bd/pasatiemposReemplaza.js",
-"js/modelo/PASATIEMPO.js",
+"js/bd/productoAgrega.js",
+"js/bd/productoBusca.js",
+"js/bd/productoConsultaNoEliminados.js",
+"js/bd/productoConsultaTodos.js",
+"js/bd/productoElimina.js",
+"js/bd/productoModifica.js",
+"js/bd/productosReemplaza.js",
+"js/modelo/PRODUCTO.js",
 "js/modelo/validaId.js",
 "js/modelo/validaNombre.js",
-"js/modelo/validaPasatiempo.js",
-"js/modelo/validaPasatiempos.js",
+"js/modelo/validaProducto.js",
+"js/modelo/validaProductos.js",
 "lib/js/bdConsulta.js",
 "lib/js/bdEjecuta.js",
 "lib/js/consumeJson.js",
